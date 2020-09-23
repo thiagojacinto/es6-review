@@ -1,0 +1,30 @@
+{
+  "name": "es6-review",
+  "version": "1.0.0",
+  "description": "Reviewing JavaScript ES6+ concepts.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5"
+  },
+  "scripts": {
+    "dev": "babel ./src/index.js --out-file ./build/bundle.js",
+    "dev:w": "babel ./src/index.js --out-file ./build/bundle.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagojacinto/es6-review.git"
+  },
+  "keywords": [
+    "javascript",
+    "es6+"
+  ],
+  "author": "Thiago Jacinto",
+  "license": "Mozilla Public License Version 2.0",
+  "bugs": {
+    "url": "https://github.com/thiagojacinto/es6-review/issues"
+  },
+  "homepage": "https://github.com/thiagojacinto/es6-review#readme"
+}
