@@ -1,58 +1,62 @@
-const array = [1, 2, 3, 1, 2, 8, 6, 5];
-
 /**
- * MAP
- * Applies operations with every item of the array.
- */
-/**
- * Maps an array just add item's value to its index number.
- */
-const fromMapArray = array.map(function (item, index) {
-  return item + index;
-});
-
-console.log("> Map: ");
-console.log(fromMapArray);
-
-/**
- * REDUCE
- * Loops and performes operations within array's item.
+ * REST OPERATOR
  */
 
-/**
- * Reducing the array by division, with initial value of 100,000
- */
-const fromReduceArray = array.reduce(function (total, item) {
-  return total / item;
-}, 100000);
+ const multiply = (a = 1, b = 1) => {
+   return a * b;
+ };
 
-console.log("> Reduce: ");
-console.log(fromReduceArray);
+ console.group([
+   "Multiply simple version with defaut values",
+   multiply(),
+   "Multiply simple version 4 * 1",
+   multiply(4),
+   "Multiply simple version 4 * 5",
+   multiply(4, 5),
+ ]);
 
-/**
- * FILTER
- * Choose from all items those that meets some criterea.
- */
-/**
- * Filters array in search of even indexes.
- */
-const fromFilterArray = array.filter(function (item, index) {
-  return index % 2 !== 0;
-});
+ /**
+  * Using REST to handle function parameters.
+  */
+ const multiply2 = (a = 1, b = 1, ...params) => {
+   if (params) {
+     return params.reduce((total, item) => {
+       return total * item;
+     }, a * b)
+   
+    } else {   
+     return a * b;
+   }
+ };
 
-console.log("> Filter: ");
-console.log(fromFilterArray);
+ console.group([
+   "Multiply simple version with defaut values",
+   multiply2(),
+   "Multiply simple version 4 * 1",
+   multiply2(4),
+   "Multiply simple version 4 * 5",
+   multiply2(4, 5),
+   "Multiply simple version 4 * 5 * [1,3,5]",
+   multiply2(4, 5, 1, 3, 5),
+ ]);
 
-/**
- * FIND
- * Loops the array in search of a true
- */
-/**
- * Search inside the array that item that has index number equals to its value.
- */
-const fromFindArray = array.find(function (item, index) {
-  return index === item;
-});
+ /**
+  * SPREAD OPERATOR
+  */
 
-console.log("> Find: ");
-console.log(fromFindArray);
+  const Address = {
+    street: "Sir. James Arthur Baldwin",
+    number: 12,
+    state: "CA",
+    zip: 1938592
+  }
+
+  console.table(Address);
+
+  let newAddress = { 
+    ...Address, 
+    street: "Fela Kuti",
+    zip: 4242424
+  }
+
+  console.table(newAddress);
