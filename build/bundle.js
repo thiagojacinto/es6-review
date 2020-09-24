@@ -1,45 +1,78 @@
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var users = [{
-  name: "Diego",
-  age: 23,
-  company: "Compasso"
-}, {
-  name: "Gabriel",
-  age: 15,
-  company: "Compasso"
-}, {
-  name: "Lucas",
-  age: 30,
-  company: "Diveo"
-}]; // 2.1 - An array only with ages;
-
-var ageArray = users.map(function (user) {
-  return user.age;
+// Arrow function conversion
+// 3.1
+var arr = [1, 2, 3, 4, 5];
+var ex31 = arr.map(function (item) {
+  return item + 10;
 });
-console.log("2.1", ageArray); // 2.2 - Users with age higher than 18 and working at Compasso;
-
-var filteredArray = users.filter(function (user) {
-  return user.age > 18 && user.company === "Compasso";
+var solution31 = arr.map(function (item) {
+  return item + 10;
 });
-console.log("2.2", filteredArray); // 2.3 - Users that works at Google;
+console.log("Solution 3.1:", solution31, ex31);
 
-var googlers = users.find(function (user) {
-  return user.company === "Google";
-});
-console.log("2.3", googlers); // 2.4 - Multiply users' age by 2 and filter those below 50:
-
-var notFifties = users.map(function (user) {
-  return _objectSpread(_objectSpread({}, user), {}, {
-    age: user.age * 2
+var equalsArrays = function equalsArrays() {
+  var array1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var array2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  return array1.length === array2.length && array1.every(function (item, index) {
+    return item === array2[index];
   });
-}).filter(function (user) {
-  return user.age < 50;
-});
-console.log("2.4", notFifties);
+};
+
+console.assert(equalsArrays(ex31, solution31)); // 3.2
+
+var usuario = {
+  nome: "Diego",
+  idade: 23
+};
+
+function mostraIdade(usuario) {
+  return usuario.idade;
+}
+
+mostraIdade(usuario);
+
+var showAge = function showAge(usuario) {
+  return usuario.idade;
+};
+
+console.assert(mostraIdade(usuario) === showAge(usuario)); // 3.3
+
+var nome = "Diego";
+var idade = 23;
+
+function mostraUsuario() {
+  var nome = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "Diego";
+  var idade = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 18;
+  return {
+    nome: nome,
+    idade: idade
+  };
+}
+
+mostraUsuario(nome, idade);
+mostraUsuario(nome);
+
+var showUser = function showUser() {
+  var nome = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "Diego";
+  var idade = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 18;
+  return {
+    nome: nome,
+    idade: idade
+  };
+};
+
+console.assert(showUser(nome, idade), mostraUsuario(nome, idade));
+console.assert(showUser(nome), mostraUsuario(nome)); // 3.4
+
+var promise = function promise() {
+  return new Promise(function (resolve, reject) {
+    return resolve();
+  });
+};
+
+var arrowPromise = function arrowPromise() {
+  return new Promise(function (resolve, reject) {
+    return resolve();
+  });
+};
