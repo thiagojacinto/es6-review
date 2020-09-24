@@ -1,5 +1,6 @@
 import { sum as FunctionSum, showInfo } from "./ImportExport";
 import isBlack from "./ImportExport";
+import { showSolution as webpackChallengeSolution } from "./challenges/webpack/index";
 
 console.log("Is orange == black?", isBlack("orange"));
 
@@ -8,3 +9,5 @@ console.log("10 + 15 + 23 + 41 =", FunctionSum(10, 15, 23, 41));
 console.log("13 + 55 + 10 =", FunctionSum(13, 55, 10));
 
 showInfo();
+
+webpackChallengeSolution();
