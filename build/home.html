@@ -7,6 +7,8 @@
 
   <style>
     body {
+      width: 100vw;
+      height: 100%;
       font-size: 16px;
     }
 
@@ -35,30 +37,42 @@
     p {
       margin: 1.4rem 0;
     }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: space-around;
+    }
   </style>
 </head>
 <body>
+  <main>
+    <div class="container">
 
-  <form action="" id="repo-form">
-    <input type="text" name="repository" id="repository">
-    <button type="submit">Adicionar</button>
-  </form>
-
-  <ul id="repo-list">
-    <li>
-      <img src="https://avatars1.githubusercontent.com/u/46906069?s=460&u=ad0bda3350551c1b06f18f9fbfa590b2b5ba1fb0&v=4" alt="repository logo" />
-      <strong>github.com/thiagojacinto</strong>
-      <p>Hunger learner</p>
-      <a href="http://" target="_blank" rel="noopener noreferrer">Acessar</a>
-    </li>
-    <li>
-      <img src="https://avatars1.githubusercontent.com/u/46906069?s=460&u=ad0bda3350551c1b06f18f9fbfa590b2b5ba1fb0&v=4" alt="repository logo" />
-      <strong>github.com/thiagojacinto</strong>
-      <p>Hunger learner</p>
-      <a href="http://" target="_blank" rel="noopener noreferrer">Acessar</a>
-    </li>
-  </ul>
-  
+      <form id="repo__form">
+        <input type="text" name="repository__input" id="repository__input">
+        <button type="submit">Adicionar</button>
+      </form>
+      
+      <ul id="repo-list">
+        <li>
+          <img src="https://avatars1.githubusercontent.com/u/46906069?s=460&u=ad0bda3350551c1b06f18f9fbfa590b2b5ba1fb0&v=4" alt="repository logo" />
+          <strong>github.com/thiagojacinto</strong>
+          <p>Hunger learner</p>
+          <a href="http://" target="_blank" rel="noopener noreferrer">Acessar</a>
+        </li>
+        <li>
+          <img src="https://avatars1.githubusercontent.com/u/46906069?s=460&u=ad0bda3350551c1b06f18f9fbfa590b2b5ba1fb0&v=4" alt="repository logo" />
+          <strong>github.com/thiagojacinto</strong>
+          <p>Hunger learner</p>
+          <a href="http://" target="_blank" rel="noopener noreferrer">Acessar</a>
+        </li>
+      </ul>
+    </div>
+  </main>
+    
   <script src="./bundle.js"></script>
 </body>
 </html>
