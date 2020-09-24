@@ -11,13 +11,15 @@
     "@babel/preset-env": "^7.11.5",
     "babel-loader": "^8.1.0",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
     "dev:b": "babel ./src/index.js --out-file ./build/bundle.js",
     "dev:bw": "babel ./src/index.js --out-file ./build/bundle.js --watch",
     "c01:w": "babel ./src/challenges/concepts/06.js --out-file ./build/bundle.js --watch",
-    "dev:web": "webpack --mode=development -w" 
+    "dev:web": "webpack --mode=development -w",
+    "start": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,7 @@
     "es6+"
   ],
   "author": "Thiago Jacinto",
-  "license": "Mozilla Public License Version 2.0",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/thiagojacinto/es6-review/issues"
   },
