@@ -1,23 +1,17 @@
-import { sum as FunctionSum, showInfo } from "./ImportExport";
-import isBlack from "./ImportExport";
-import { showSolution as webpackChallengeSolution } from "./challenges/webpack/index";
+import {
+  onePerSecond,
+  asyncOnePerSecond,
+} from "./challenges/async-await/index";
 
-console.log("Is orange == black?", isBlack("orange"));
+onePerSecond();
+asyncOnePerSecond();
 
-console.log("2 + 2 =", FunctionSum(2, 2));
-console.log("10 + 15 + 23 + 41 =", FunctionSum(10, 15, 23, 41));
-console.log("13 + 55 + 10 =", FunctionSum(13, 55, 10));
+import {
+  getUserFromGithub,
+  asyncGetUserFromGithub,
+} from "./challenges/async-await/index";
 
-showInfo();
-
-const myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => resolve(showInfo()), 1500);
-});
-
-const myAsyncFunction = async () => {
-  await myPromise();
-};
-
-myAsyncFunction();
-
-webpackChallengeSolution();
+console.group("1.2 - Axios GET");
+getUserFromGithub();
+asyncGetUserFromGithub();
+console.groupEnd();
