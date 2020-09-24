@@ -10,4 +10,14 @@ console.log("13 + 55 + 10 =", FunctionSum(13, 55, 10));
 
 showInfo();
 
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve(showInfo()), 1500);
+});
+
+const myAsyncFunction = async () => {
+  await myPromise();
+};
+
+myAsyncFunction();
+
 webpackChallengeSolution();
