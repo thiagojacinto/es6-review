@@ -1,47 +1,56 @@
 "use strict";
 
-/**
- * DESTRUCTURING
- */
-// 4.1
-var empresa = {
-  nome: "Rocketseat",
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// REST
+var arr = [1, 2, 3, 4, 5, 6];
+var x = arr[0],
+    y = arr.slice(1);
+console.group("5.1 - array destructuring");
+console.log(x);
+console.log(y);
+console.groupEnd();
+
+var soma = function soma() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return args.reduce(function (total, item) {
+    return total + item;
+  });
+};
+
+console.group("5.1 - sum function");
+console.log(soma(1, 2, 3, 4, 5, 6));
+console.log(soma(1, 2));
+console.groupEnd();
+var usuario = {
+  nome: "Diego",
+  idade: 23,
   endereco: {
     cidade: "Rio do Sul",
-    estado: "SC"
+    uf: "SC",
+    pais: "Brasil"
   }
 };
-var nome = empresa.nome;
-var _empresa$endereco = empresa.endereco,
-    cidade = _empresa$endereco.cidade,
-    estado = _empresa$endereco.estado;
-console.group("4.1");
-console.log(nome);
-console.log(cidade);
-console.log(estado);
-console.groupEnd(); // 4.2
 
-function mostraInfo(usuario) {
-  return "".concat(usuario.nome, " tem ").concat(usuario.idade, " anos.");
-}
-
-mostraInfo({
-  nome: "Diego",
-  idade: 23
+var usuario2 = _objectSpread(_objectSpread({}, usuario), {}, {
+  nome: "Gabriel"
 });
 
-var arrowMostraInfo = function arrowMostraInfo(_ref) {
-  var nome = _ref.nome,
-      idade = _ref.idade;
-  return "".concat(nome, " tem ").concat(idade, " anos.");
-};
+var usuario3 = _objectSpread(_objectSpread({}, usuario), {}, {
+  endereco: _objectSpread(_objectSpread({}, usuario.endereco), {}, {
+    cidade: "Lontras"
+  })
+});
 
-var example = {
-  nome: "Diego",
-  idade: 23
-};
-console.group("4.2");
-console.log(mostraInfo(example));
-console.log(arrowMostraInfo(example));
-console.assert(mostraInfo(example) === arrowMostraInfo(example));
+console.group("5.2 - SPREAD");
+console.log("Original object: ", usuario);
+console.log("Changing name: ", usuario2);
+console.log("Changing city: ", usuario3);
 console.groupEnd();
