@@ -76,3 +76,6 @@ var arrowPromise = function arrowPromise() {
     return resolve();
   });
 };
+
+promise().then(console.log("Regular function promise fulfilled."));
+arrowPromise().then(console.log("Arrow function promise fulfilled."));
