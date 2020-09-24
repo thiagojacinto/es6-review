@@ -10,4 +10,9 @@
   * [04.js](./challenges/concepts/04.js)
   * [05.js](./challenges/concepts/05.js)
   * [06.js](./challenges/concepts/06.js)
+  * [index.js](./challenges/concepts/index.js)
+  
+* [webpack/](./challenges/webpack)
+  * [01.js](./challenges/webpack/01.js)
+  * [index.js](./challenges/webpack/index.js)
  
