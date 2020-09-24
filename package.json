@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "babel ./src/index.js --out-file ./build/bundle.js",
     "dev:w": "babel ./src/index.js --out-file ./build/bundle.js --watch",
-    "c01:w": "babel ./src/challenges/concepts/01.js --out-file ./build/bundle.js --watch"
+    "c01:w": "babel ./src/challenges/concepts/02.js --out-file ./build/bundle.js --watch"
   },
   "repository": {
     "type": "git",
