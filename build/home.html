@@ -4,8 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webpack is serving...</title>
+
+  <style>
+    body {
+      font-size: 16px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    li {
+      clear: both;
+      margin-top: 2rem;
+    }
+
+    img {
+      width: 8rem;
+      float: left;
+      margin-right: 3rem;
+    }
+
+    strong {
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin: 1.4rem 0;
+    }
+  </style>
 </head>
 <body>
+
+  <form action="" id="repo-form">
+    <input type="text" name="repository" id="repository">
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <ul id="repo-list">
+    <li>
+      <img src="https://avatars1.githubusercontent.com/u/46906069?s=460&u=ad0bda3350551c1b06f18f9fbfa590b2b5ba1fb0&v=4" alt="repository logo" />
+      <strong>github.com/thiagojacinto</strong>
+      <p>Hunger learner</p>
+      <a href="http://" target="_blank" rel="noopener noreferrer">Acessar</a>
+    </li>
+    <li>
+      <img src="https://avatars1.githubusercontent.com/u/46906069?s=460&u=ad0bda3350551c1b06f18f9fbfa590b2b5ba1fb0&v=4" alt="repository logo" />
+      <strong>github.com/thiagojacinto</strong>
+      <p>Hunger learner</p>
+      <a href="http://" target="_blank" rel="noopener noreferrer">Acessar</a>
+    </li>
+  </ul>
   
   <script src="./bundle.js"></script>
 </body>
