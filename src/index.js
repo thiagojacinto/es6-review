@@ -1,13 +1,42 @@
-import { sum as FunctionSum, showInfo } from "./ImportExport";
-import isBlack from "./ImportExport";
-import { showSolution as webpackChallengeSolution } from "./challenges/webpack/index";
+import {
+  onePerSecond,
+  asyncOnePerSecond,
+} from "./challenges/async-await/index";
 
-console.log("Is orange == black?", isBlack("orange"));
+console.group("1.1 - Regular Promise");
+onePerSecond();
+asyncOnePerSecond();
+console.groupEnd();
 
-console.log("2 + 2 =", FunctionSum(2, 2));
-console.log("10 + 15 + 23 + 41 =", FunctionSum(10, 15, 23, 41));
-console.log("13 + 55 + 10 =", FunctionSum(13, 55, 10));
+import {
+  getUserFromGithub,
+  asyncGetUserFromGithub,
+} from "./challenges/async-await/index";
 
-showInfo();
+console.group("1.2 - Axios GET");
+getUserFromGithub();
+asyncGetUserFromGithub();
+console.groupEnd();
 
-webpackChallengeSolution();
+import { Github } from "./challenges/async-await/index";
+
+console.group("1.3 - Class static async");
+
+Github.getRepositories();
+Github.getRepositories("rocketseat/dslkvmskv");
+
+Github.asyncGetRepositories();
+Github.asyncGetRepositories("rocketseat/dslkvmskv");
+
+console.groupEnd();
+
+import {
+  buscaUsuario,
+  asyncBuscaUsuario,
+} from "./challenges/async-await/index";
+
+console.group("1.4 - Arrow function async/await");
+
+buscaUsuario("diego3g");
+asyncBuscaUsuario("diego3g");
+console.groupEnd();

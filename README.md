@@ -16,3 +16,5 @@
   * [01.js](./challenges/webpack/01.js)
   * [index.js](./challenges/webpack/index.js)
  
+* [async-await/](./challenges/async-await)
+  * [index.js](./challenges/async-await/index.js)
