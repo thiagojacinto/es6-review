@@ -14,9 +14,10 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "dev": "babel ./src/index.js --out-file ./build/bundle.js",
-    "dev:w": "babel ./src/index.js --out-file ./build/bundle.js --watch",
-    "c01:w": "babel ./src/challenges/concepts/06.js --out-file ./build/bundle.js --watch"
+    "dev:b": "babel ./src/index.js --out-file ./build/bundle.js",
+    "dev:bw": "babel ./src/index.js --out-file ./build/bundle.js --watch",
+    "c01:w": "babel ./src/challenges/concepts/06.js --out-file ./build/bundle.js --watch",
+    "dev:web": "webpack --mode=development -w" 
   },
   "repository": {
     "type": "git",
