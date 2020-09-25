@@ -11,6 +11,7 @@ export class App {
     this.clearButtonElement = document.querySelector("button#btn__clear_all");
 
     this.formSubscribe();
+    this.buttonClearSubscribe();
   }
 
   /**
@@ -34,8 +35,29 @@ export class App {
   }
 
   /**
+   * Subscribe to clear all / button
+   */
+  buttonClearSubscribe() {
+    this.clearButtonElement.onclick = (event) => {
+      this.clearRepository(event);
+    };
+  }
+
+  /**
+   * Remove all items from repositories list
+   * @param {*} event
+   */
+  clearRepository(event) {
+    event.preventDefault();
+
+    this.repositories = [];
+
+    this.render();
+  }
+
+  /**
    * Adds a new item to the repository list.
-   * @param {*} HTMLFormEvent
+   * @param {HTMLFormEvent} event
    */
   async addToRepository(event) {
     event.preventDefault();
@@ -84,7 +106,7 @@ export class App {
 
   /**
    * Removes repository from repositories list.
-   * @param {GlobalEventHandlers.onclick} event
+   * @param {*} event
    * @param {*} id
    */
   removeFromList(event, id) {
