@@ -8,9 +8,10 @@ export class App {
     this.inputElement = document.getElementById("repository__input");
     this.listElement = document.getElementById("repo__list");
     this.removeButtonsElements = document.getElementsByName("btn__remove");
-    
+    this.clearButtonElement = document.querySelector("button#btn__clear_all");
+
     this.formSubscribe();
-    
+    this.buttonClearSubscribe();
   }
 
   /**
@@ -26,16 +27,37 @@ export class App {
    * Subscribe into each "Remove" button of repositories list item.
    */
   buttonRemoveSubscribe() {
-    this.removeButtonsElements.forEach(btn => {
+    this.removeButtonsElements.forEach((btn) => {
       btn.onclick = (event) => {
         this.removeFromList(event, btn.getAttribute("data-github_id"));
-      }
+      };
     });
   }
 
   /**
+   * Subscribe to clear all / button
+   */
+  buttonClearSubscribe() {
+    this.clearButtonElement.onclick = (event) => {
+      this.clearRepository(event);
+    };
+  }
+
+  /**
+   * Remove all items from repositories list
+   * @param {*} event
+   */
+  clearRepository(event) {
+    event.preventDefault();
+
+    this.repositories = [];
+
+    this.render();
+  }
+
+  /**
    * Adds a new item to the repository list.
-   * @param {*} HTMLFormEvent
+   * @param {HTMLFormEvent} event
    */
   async addToRepository(event) {
     event.preventDefault();
@@ -65,7 +87,6 @@ export class App {
 
     this.repositories.push(item);
     this.render();
-
   }
 
   /**
@@ -85,18 +106,19 @@ export class App {
 
   /**
    * Removes repository from repositories list.
-   * @param {GlobalEventHandlers.onclick} event 
-   * @param {*} id 
+   * @param {*} event
+   * @param {*} id
    */
   removeFromList(event, id) {
-    
     console.assert(event !== null);
     event !== null && event.preventDefault();
     console.assert(id !== "");
     if (id.trim() === "") return;
 
-    this.repositories = this.repositories.filter((item) => item.id !== parseInt(id));
-    
+    this.repositories = this.repositories.filter(
+      (item) => item.id !== parseInt(id)
+    );
+
     this.render();
   }
 
@@ -116,7 +138,7 @@ export class App {
         titleElement.appendChild(document.createTextNode(name));
 
         let descriptionElement = document.createElement("p");
-        language !== "" &&
+        language !== null &&
           descriptionElement.appendChild(
             document.createTextNode(`[${language}] `)
           );
@@ -150,6 +172,5 @@ export class App {
 
     this.removeButtonsElements = document.getElementsByName("btn__remove");
     this.buttonRemoveSubscribe();
-
   }
 }
