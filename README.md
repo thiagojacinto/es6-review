@@ -18,3 +18,7 @@
  
 * [async-await/](./challenges/async-await)
   * [index.js](./challenges/async-await/index.js)
+
+* [list-app/](./challenges/list-app)
+  * [api.js](./challenges/list-app/api.js)
+  * [index.js](./challenges/list-app/index.js)
