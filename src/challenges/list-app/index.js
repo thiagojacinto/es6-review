@@ -1,12 +1,16 @@
+import API from "./api";
+
 export class App {
   constructor() {
     this.repositories = [];
 
     this.formElement = document.getElementById("repo__form");
     this.inputElement = document.getElementById("repository__input");
-    this.listElement = document.getElementById("repo-list");
-
+    this.listElement = document.getElementById("repo__list");
+    this.removeButtonsElements = document.getElementsByName("btn__remove");
+    
     this.formSubscribe();
+    
   }
 
   /**
@@ -19,6 +23,17 @@ export class App {
   }
 
   /**
+   * Subscribe into each "Remove" button of repositories list item.
+   */
+  buttonRemoveSubscribe() {
+    this.removeButtonsElements.forEach(btn => {
+      btn.onclick = (event) => {
+        this.removeFromList(event, btn.getAttribute("data-github_id"));
+      }
+    });
+  }
+
+  /**
    * Adds a new item to the repository list.
    * @param {*} HTMLFormEvent
    */
@@ -26,41 +41,115 @@ export class App {
     event.preventDefault();
 
     const repoInput = this.inputElement.value;
+    if (repoInput === "") return;
 
-    this.renderListItem();
+    const response = await this.fetchAPI(repoInput);
+
+    const {
+      id,
+      name,
+      description,
+      html_url,
+      language,
+      owner: { avatar_url },
+    } = response.data;
+
+    const item = {
+      id,
+      name,
+      description,
+      html_url,
+      language,
+      avatar_url,
+    };
+
+    this.repositories.push(item);
+    this.render();
+
+  }
+
+  /**
+   * Fetch Github's Repository information API
+   * @param {*} githubRepo name of the required repository.
+   */
+  async fetchAPI(githubRepo = "thiagojacint/es6-review") {
+    return await API.get(`/repos/${githubRepo}`);
+  }
+
+  /**
+   * Clear list of repositories from the UL HTML Element.
+   */
+  clearListView() {
+    this.listElement.innerHTML = "";
+  }
+
+  /**
+   * Removes repository from repositories list.
+   * @param {GlobalEventHandlers.onclick} event 
+   * @param {*} id 
+   */
+  removeFromList(event, id) {
+    
+    console.assert(event !== null);
+    event !== null && event.preventDefault();
+    console.assert(id !== "");
+    if (id.trim() === "") return;
+
+    this.repositories = this.repositories.filter((item) => item.id !== parseInt(id));
+    
+    this.render();
   }
 
   /**
    * Renders a new List Item after every repository list item.
    */
-  renderListItem() {
-    let imgElement = document.createElement("img");
-    imgElement.setAttribute(
-      "src",
-      "https://avatars1.githubusercontent.com/u/46906069?s=460&u=ad0bda3350551c1b06f18f9fbfa590b2b5ba1fb0&v=4"
+  render() {
+    this.clearListView();
+
+    this.repositories.forEach(
+      ({ avatar_url, name, language = "", description, html_url, id }) => {
+        let imgElement = document.createElement("img");
+        imgElement.setAttribute("src", avatar_url);
+        imgElement.setAttribute("alt", "Repository owner picture");
+
+        let titleElement = document.createElement("strong");
+        titleElement.appendChild(document.createTextNode(name));
+
+        let descriptionElement = document.createElement("p");
+        language !== "" &&
+          descriptionElement.appendChild(
+            document.createTextNode(`[${language}] `)
+          );
+        descriptionElement.appendChild(document.createTextNode(description));
+
+        let anchorElement = document.createElement("a");
+        anchorElement.setAttribute("href", html_url);
+        anchorElement.setAttribute("target", "_blank");
+        anchorElement.setAttribute("rel", "noopener noreferrer");
+
+        let accessBtnElement = document.createElement("button");
+        accessBtnElement.appendChild(document.createTextNode("Access"));
+
+        anchorElement.appendChild(accessBtnElement);
+
+        let removeBtnElement = document.createElement("button");
+        removeBtnElement.setAttribute("data-github_id", id);
+        removeBtnElement.setAttribute("name", "btn__remove");
+        removeBtnElement.appendChild(document.createTextNode("Remove"));
+
+        let listItemElement = document.createElement("li");
+        listItemElement.appendChild(imgElement);
+        listItemElement.appendChild(titleElement);
+        listItemElement.appendChild(descriptionElement);
+        listItemElement.appendChild(anchorElement);
+        listItemElement.appendChild(removeBtnElement);
+
+        this.listElement.appendChild(listItemElement);
+      }
     );
-    imgElement.setAttribute("alt", "Repository owner picture");
 
-    let titleElement = document.createElement("strong");
-    titleElement.appendChild(
-      document.createTextNode("thiagojacinto/es6-review")
-    );
+    this.removeButtonsElements = document.getElementsByName("btn__remove");
+    this.buttonRemoveSubscribe();
 
-    let descriptionElement = document.createElement("p");
-    descriptionElement.appendChild(document.createTextNode("Hunger learner."));
-
-    let anchorElement = document.createElement("a");
-    anchorElement.setAttribute("href", "http://");
-    anchorElement.setAttribute("target", "_blank");
-    anchorElement.setAttribute("rel", "noopener noreferrer");
-    anchorElement.appendChild(document.createTextNode("Access"));
-
-    let listItemElement = document.createElement("li");
-    listItemElement.appendChild(imgElement);
-    listItemElement.appendChild(titleElement);
-    listItemElement.appendChild(descriptionElement);
-    listItemElement.appendChild(anchorElement);
-
-    this.listElement.appendChild(listItemElement);
   }
 }
