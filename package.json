@@ -1,6 +1,6 @@
 {
   "name": "es6-review",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "description": "Reviewing JavaScript ES6+ concepts.",
   "main": "index.js",
   "dependencies": {
@@ -23,7 +23,8 @@
     "dev:bw": "babel ./src/index.js --out-file ./build/bundle.js --watch",
     "c01:w": "babel ./src/challenges/concepts/06.js --out-file ./build/bundle.js --watch",
     "dev:web": "webpack --mode=development -w",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
