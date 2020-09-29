@@ -1,6 +1,6 @@
 {
   "name": "es6-review",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "description": "Reviewing JavaScript ES6+ concepts.",
   "main": "index.js",
   "dependencies": {
