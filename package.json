@@ -24,7 +24,7 @@
     "c01:w": "babel ./src/challenges/concepts/06.js --out-file ./build/bundle.js --watch",
     "dev:web": "webpack --mode=development -w",
     "start": "webpack-dev-server --open",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js --mode=production"
   },
   "repository": {
     "type": "git",
