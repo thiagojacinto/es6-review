@@ -64,9 +64,10 @@ export class App {
 
     const repoInput = this.inputElement.value;
     if (repoInput === "") return;
-
+    
     const response = await this.fetchAPI(repoInput);
-
+    this.clearValue(this.inputElement);
+    
     const {
       id,
       name,
@@ -102,6 +103,14 @@ export class App {
    */
   clearListView() {
     this.listElement.innerHTML = "";
+  }
+
+  /**
+   * Clear value of a HTML Element.
+   * @param {*} HTMLElement
+   */
+  clearValue(element) {
+    element.value = "";
   }
 
   /**
