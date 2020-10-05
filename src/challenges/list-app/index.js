@@ -78,7 +78,8 @@ export class App {
     } = response.data;
 
     const item = {
-      id,
+      id: Date.now(),
+      githubID: id,
       name,
       description,
       html_url,
